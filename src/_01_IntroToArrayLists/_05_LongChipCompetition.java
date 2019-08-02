@@ -3,7 +3,6 @@ package _01_IntroToArrayLists;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
 
 public class _05_LongChipCompetition {
 	/**
@@ -16,9 +15,10 @@ public class _05_LongChipCompetition {
 
 	public static void main(String[] args) {
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
-		
+		lcc.findLongestChip();
+
 	}
-	
+
 	private void initializeBeatles() {
 		Beatle george = new Beatle("George");
 		Beatle john = new Beatle("John");
@@ -29,9 +29,49 @@ public class _05_LongChipCompetition {
 		theBeatles.add(paul);
 		theBeatles.add(ringo);
 	}
-	
-	public ArrayList<Beatle> getTheBand(){
+
+	public ArrayList<Beatle> getTheBand() {
 		return theBeatles;
+	}
+
+	public void findLongestChip() {
+		initializeBeatles();
+		double longestChipG = 0;
+		double longestChipJ = 0;
+		double longestChipP = 0;
+		double longestChipR = 0;
+		for (int i = 0; i < theBeatles.get(0).getChips().size(); i++) {
+			if (theBeatles.get(0).getChips().get(i).getLength() > longestChipG) {
+				longestChipG = theBeatles.get(0).getChips().get(i).getLength();
+			}
+		}
+		for (int i = 0; i < theBeatles.get(1).getChips().size(); i++) {
+			if (theBeatles.get(1).getChips().get(i).getLength() > longestChipJ) {
+				longestChipG = theBeatles.get(1).getChips().get(i).getLength();
+			}
+		}
+		for (int i = 0; i < theBeatles.get(2).getChips().size(); i++) {
+			if (theBeatles.get(2).getChips().get(i).getLength() > longestChipP) {
+				longestChipG = theBeatles.get(2).getChips().get(i).getLength();
+			}
+		}
+		for (int i = 0; i < theBeatles.get(3).getChips().size(); i++) {
+			if (theBeatles.get(3).getChips().get(i).getLength() > longestChipR) {
+				longestChipG = theBeatles.get(3).getChips().get(i).getLength();
+			}
+		}
+		if (longestChipG > longestChipJ && longestChipG > longestChipP && longestChipG > longestChipR) {
+			System.out.println("George has the longest chip, at " + longestChipG + " cm.");
+		}
+		else if (longestChipJ > longestChipG && longestChipJ > longestChipP && longestChipJ > longestChipR) {
+			System.out.println("John has the longest chip, at " + longestChipJ + " cm.");
+		}
+		else if (longestChipP > longestChipJ && longestChipP > longestChipG && longestChipP > longestChipR) {
+			System.out.println("Paul has the longest chip, at " + longestChipP + " cm.");
+		}
+		else if (longestChipR > longestChipJ && longestChipR > longestChipP && longestChipR > longestChipG) {
+			System.out.println("Ringo has the longest chip, at " + longestChipR + " cm.");
+		}
 	}
 }
 
