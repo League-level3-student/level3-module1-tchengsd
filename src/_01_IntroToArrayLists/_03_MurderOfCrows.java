@@ -31,6 +31,7 @@ public class _03_MurderOfCrows {
          */
     	int deadCrows = 0;
         for(int i = 0; i < theMurder.size(); i++) {
+        	System.out.println(theMurder.get(i).getStomachContents());
         	if(theMurder.get(i).getStomachContents().contains("diamond")) {
         		System.out.println(theMurder.get(i).getName());
         		break;
@@ -74,7 +75,7 @@ class Crow {
     }
 
     private String getRandomCrowFood() {
-        int randomness = new Random().nextInt(4);
+        int randomness = new Random().nextInt(5);
         if (randomness == 0) return "carrion";
         else if (randomness == 1)return "snail";
         else if (randomness == 2)return "acorn";

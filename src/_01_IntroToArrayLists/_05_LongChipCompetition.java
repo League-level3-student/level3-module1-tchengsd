@@ -63,13 +63,13 @@ public class _05_LongChipCompetition {
 		if (longestChipG > longestChipJ && longestChipG > longestChipP && longestChipG > longestChipR) {
 			System.out.println("George has the longest chip, at " + longestChipG + " cm.");
 		}
-		else if (longestChipJ > longestChipG && longestChipJ > longestChipP && longestChipJ > longestChipR) {
+		if (longestChipJ > longestChipG && longestChipJ > longestChipP && longestChipJ > longestChipR) {
 			System.out.println("John has the longest chip, at " + longestChipJ + " cm.");
 		}
-		else if (longestChipP > longestChipJ && longestChipP > longestChipG && longestChipP > longestChipR) {
+		if (longestChipP > longestChipJ && longestChipP > longestChipG && longestChipP > longestChipR) {
 			System.out.println("Paul has the longest chip, at " + longestChipP + " cm.");
 		}
-		else if (longestChipR > longestChipJ && longestChipR > longestChipP && longestChipR > longestChipG) {
+		if (longestChipR > longestChipJ && longestChipR > longestChipP && longestChipR > longestChipG) {
 			System.out.println("Ringo has the longest chip, at " + longestChipR + " cm.");
 		}
 	}
