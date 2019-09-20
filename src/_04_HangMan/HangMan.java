@@ -32,7 +32,6 @@ public class HangMan implements KeyListener {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		word.setText("");
-		livesLeft.setText("Lives remaining: " + lives);
 		frame.add(panel);
 		frame.addKeyListener(this);
 		panel.add(word);
@@ -41,31 +40,34 @@ public class HangMan implements KeyListener {
 			String psh = Utilities.readRandomLineFromFile("dictionary.txt");
 			if (!guessWords.contains(psh)) {
 				guessWords.push(psh);
-			}
-			else {
+			} else {
 				i--;
 			}
 		}
-		currentWord = guessWords.pop();
-		System.out.println(currentWord);
-		for(int i = 0; i < currentWord.length(); i++) {
-			gameWord+="_";
-		}
-		word.setText(gameWord);
-		frame.pack();
-		if(gameWord.equals(currentWord) && !guessWords.empty()) {
-			getNewWord();
-		}
+		getNewWord();
 	}
-	
+
 	void getNewWord() {
+		if(guessWords.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "You won!");
+			System.exit(0);
+		}
 		currentWord = guessWords.pop();
-		for(int i = 0; i < currentWord.length(); i++) {
-			gameWord+="_";
+		gameWord = "";
+		for (int i = 0; i < currentWord.length(); i++) {
+			gameWord += "_";
 		}
 		word.setText(gameWord);
 		livesLeft.setText("Lives remaining: " + lives);
 		frame.pack();
+	}
+
+	boolean turnFinished() {
+		if (!gameWord.contains("_")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -73,33 +75,38 @@ public class HangMan implements KeyListener {
 		// TODO Auto-generated method stub
 		char c = e.getKeyChar();
 		String str = "";
-		if(gameWord != null) {
-			for(int i = 0; i < currentWord.length(); i++) {
-				if(currentWord.charAt(i) == c) {
-					str+=c;
-				}
-				else {
-					str+=gameWord.charAt(i);
+		if (gameWord != null) {
+			for (int i = 0; i < currentWord.length(); i++) {
+				if (currentWord.charAt(i) == c) {
+					str += c;
+				} else {
+					str += gameWord.charAt(i);
 				}
 			}
-			if(!currentWord.contains(String.valueOf(c))) {
+			if (!currentWord.contains(String.valueOf(c))) {
 				lives--;
+				livesLeft.setText("Lives remaining: " + lives);
 			}
 			gameWord = str;
 			word.setText(gameWord);
-			livesLeft.setText("Lives remaining: " + lives);
+			if (turnFinished()) {
+				getNewWord();
+			} else if (lives <= 0) {
+				JOptionPane.showMessageDialog(null, "Game Over! The correct word was " + currentWord + ".");
+				System.exit(0);
+			}
 		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
