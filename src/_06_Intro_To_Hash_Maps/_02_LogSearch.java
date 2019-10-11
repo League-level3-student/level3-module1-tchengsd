@@ -96,6 +96,12 @@ public class _02_LogSearch implements ActionListener {
 			text.setText(nameList.substring(0,nameList.length() - 1));
 			frame.pack();
 		}
+		if (a == remove) {
+			String remStr = JOptionPane.showInputDialog("Which ID do you want to remove?");
+			int remInt = Integer.parseInt(remStr);
+			hash.remove(remInt);
+			JOptionPane.showMessageDialog(null, "Removed.");
+		}
 	}
 
 }
